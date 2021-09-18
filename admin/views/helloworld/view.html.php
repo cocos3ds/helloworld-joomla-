@@ -28,6 +28,8 @@ class HelloWorldViewHelloWorld extends JViewLegacy
 
         // Display the template
         parent::display($tpl);
+        
+        $this->setDocument();
     }
 
 
@@ -53,4 +55,12 @@ class HelloWorldViewHelloWorld extends JViewLegacy
             $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
         );
     }
+
+    protected function setDocument() 
+	{
+		$isNew = ($this->item->id < 1);
+		$document = JFactory::getDocument();
+		$document->setTitle($isNew ? JText::_('COM_HELLOWORLD_HELLOWORLD_CREATING') :
+                JText::_('COM_HELLOWORLD_HELLOWORLD_EDITING'));
+	}
 }
